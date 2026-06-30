@@ -28,8 +28,11 @@ tmp*/
 *.tmp
 *.log
 
-# Project-specific ignored folders (not pushed)
+# PyInstaller Build Folders
 build/
 dist/
 *.spec
+
+# Local source code backup
+source_backup/
 
