@@ -1,0 +1,12 @@
+bin/convert_md.exe filter=lfs diff=lfs merge=lfs -text
+bin/convert_md_mac_arm64 filter=lfs diff=lfs merge=lfs -text
+bin/convert_md_mac_x86_64 filter=lfs diff=lfs merge=lfs -text
+bin/convert_md_linux filter=lfs diff=lfs merge=lfs -text
+bin/pandoc-mac-arm64 filter=lfs diff=lfs merge=lfs -text
+bin/pandoc-mac-x86_64 filter=lfs diff=lfs merge=lfs -text
+bin/pandoc.exe filter=lfs diff=lfs merge=lfs -text
+bin/typst-mac-arm64 filter=lfs diff=lfs merge=lfs -text
+bin/typst-mac-x86_64 filter=lfs diff=lfs merge=lfs -text
+bin/typst.exe filter=lfs diff=lfs merge=lfs -text
+bin/tidy.exe filter=lfs diff=lfs merge=lfs -text
+bin/tidy-5.8.0-macos.pkg filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,35 @@
+# Python Cache Files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Local dependencies
+node_modules/
+package-lock.json
+
+# Test outputs and reports
+test_outputs/
+*_out.*
+report.json
+_axe_report_temp.json
+temp_report.json
+
+# Temporary files
+tmp*/
+*.tmp
+*.log
+
+# Project-specific ignored folders (not pushed)
+build/
+dist/
+*.spec
+
