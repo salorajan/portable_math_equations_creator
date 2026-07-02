@@ -133,3 +133,19 @@ Every converted document is automatically structured to meet Web Content Accessi
 - **Repeating Headers & Split Prevention (WCAG 1.3.1)**: Alters DOCX tables to ensure the first row repeats on page boundaries and individual rows never break across pages.
 - **Screen Reader Math Fallbacks**: HTML outputs include MathML tags enriched with standard `alttext` and `aria-label` fields containing the LaTeX string, allowing talking web browsers to speak the formula.
 - **Contrast & Font Spacing (WCAG 1.4.3 & 1.4.12)**: Embedded CSS style blocks override browser layouts to guarantee readable line spacing, letter/word spacing, clear focus indicators, and high contrast.
+
+---
+
+## Automated Accessibility Testing & Verification
+
+A test document [test0.md](file:///C:/salo/acb/quill/equation_converter/test0.md) was created to verify the multi-dialect equation compilation and accessibility audit features of PMC:
+1. **Equations Covered**: 10 total equations (5 Algebra, 5 Calculus) spanning LaTeX (fraction and standard formats), Typst typeset (`t:{...}`), and SymPy (`py:{...}`) dialects.
+2. **Intentional Inaccessibilities**:
+   - A skipped heading level (from `#` directly to `###`) to test heading order verification.
+   - A graph image (`graph.png`) with missing/empty alt text to test image descriptions.
+   - An improperly structured table with mismatched column lengths and empty header cells to test table validation and auto-remediation.
+3. **Conversion Batch Script**: The batch script [convert_test0.bat](file:///C:/salo/acb/quill/equation_converter/convert_test0.bat) was executed to compile the document into MS Word, HTML, and PDF.
+4. **Audit Observations**:
+   - The CLI successfully flagged the skipped heading level at line 5 and the missing alt text at line 49.
+   - The HTML output was validated against `Axe-Core` and `HTML Tidy`, pointing out the skipped heading order and the empty table header.
+   - All equations compiled successfully across all targets (OMML in DOCX, MathML in HTML, and accessible tags in PDF).
