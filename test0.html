@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Test0</title>
   <style>
     /* Default styles provided by pandoc.
@@ -171,6 +170,19 @@
   </style>
 <style>
 
+    /* Screen reader only utility class */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     /* Accessible, responsive, and high-contrast typography */
     :root {
       --bg-color: #fcfcf9; /* Warm off-white for reading comfort */
@@ -280,6 +292,23 @@
     }
     
 </style>
+
+    <script>
+    window.MathJax = {
+      options: {
+        enableMenu: true,
+        renderAtStart: true
+      },
+      chtml: {
+        displayAlign: 'center'
+      },
+      loader: {
+        load: ['a11y/semantic-enrich', 'a11y/explorer']
+      }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -297,27 +326,21 @@ LaTeX, Typst typeset, and SymPy.</p>
 <ol type="1">
 <li><p><strong>LaTeX (Algebra 1)</strong>: The expansion of a binomial
 squared.
-<div class="math-container" tabindex="0" role="group" aria-label="Mathematical formula. Use arrow keys to scroll."><math  display="block" xmlns="http://www.w3.org/1998/Math/MathML" alttext="Formula: (a+b)^2 = a^2 + 2ab + b^2" aria-label="Formula: (a+b)^2 = a^2 + 2ab + b^2"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>=</mo><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn><mi>a</mi><mi>b</mi><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">(a+b)^2 = a^2 + 2ab + b^2</annotation></semantics></math></div></p></li>
+</p><div class="math-container"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>=</mo><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn><mi>a</mi><mi>b</mi><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup></mrow></math></div></li>
 <li><p><strong>LaTeX (Algebra 2)</strong>: The quadratic formula to
 solve
-<math  display="inline" xmlns="http://www.w3.org/1998/Math/MathML" alttext="Formula: ax^2 + bx + c = 0" aria-label="Formula: ax^2 + bx + c = 0"><semantics><mrow><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><mi>x</mi><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">ax^2 + bx + c = 0</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><mi>x</mi><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn></mrow></math>
 in fraction format.
-<div class="math-container" tabindex="0" role="group" aria-label="Mathematical formula. Use arrow keys to scroll."><math  display="block" xmlns="http://www.w3.org/1998/Math/MathML" alttext="Formula: x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" aria-label="Formula: x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}"><semantics><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mi>−</mi><mi>b</mi><mo>±</mo><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}</annotation></semantics></math></div></p></li>
+</p><div class="math-container"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mi>−</mi><mi>b</mi><mo>±</mo><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow></math></div></li>
 <li><p><strong>SymPy (Algebra 3)</strong>: Factoring the difference of
 two squares.
-<div class="math-container" tabindex="0" role="group" aria-label="Mathematical formula. Use arrow keys to scroll."><math  display="block" xmlns="http://www.w3.org/1998/Math/MathML" alttext="Formula: a^{2} - b^{2} = \left(a - b\right) \left(a + b\right)" aria-label="Formula: a^{2} - b^{2} = \left(a - b\right) \left(a + b\right)"><semantics><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>−</mo><msup><mi>b</mi><mn>2</mn></msup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>−</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
-a^{2} - b^{2} = \left(a - b\right) \left(a + b\right)
-</annotation></semantics></math></div></p></li>
+</p><div class="math-container"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>−</mo><msup><mi>b</mi><mn>2</mn></msup><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>−</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></math></div></li>
 <li><p><strong>Typst (Algebra 4)</strong>: The logarithmic product rule.
-<div class="math-container" tabindex="0" role="group" aria-label="Mathematical formula. Use arrow keys to scroll."><math  display="block" xmlns="http://www.w3.org/1998/Math/MathML" alttext="Formula: \log_{b(xy)} = \log_{b(x)} + \log_{b(y)}" aria-label="Formula: \log_{b(xy)} = \log_{b(x)} + \log_{b(y)}"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mrow><mi>b</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>=</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mrow><mi>b</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mrow><mi>b</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">
-\log_{b(xy)} = \log_{b(x)} + \log_{b(y)}
-</annotation></semantics></math></div></p></li>
+</p><div class="math-container"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mrow><mi>b</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>=</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mrow><mi>b</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mrow><mi>b</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow></math></div></li>
 <li><p><strong>SymPy (Algebra 5)</strong>: The determinant of a
-<math  display="inline" xmlns="http://www.w3.org/1998/Math/MathML" alttext="Formula: 2 \times 2" aria-label="Formula: 2 \times 2"><semantics><mrow><mn>2</mn><mo>×</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2 \times 2</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mo>×</mo><mn>2</mn></mrow></math>
 matrix.
-<div class="math-container" tabindex="0" role="group" aria-label="Mathematical formula. Use arrow keys to scroll."><math  display="block" xmlns="http://www.w3.org/1998/Math/MathML" alttext="Formula: a d - b c = a d - b c" aria-label="Formula: a d - b c = a d - b c"><semantics><mrow><mi>a</mi><mi>d</mi><mo>−</mo><mi>b</mi><mi>c</mi><mo>=</mo><mi>a</mi><mi>d</mi><mo>−</mo><mi>b</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">
-a d - b c = a d - b c
-</annotation></semantics></math></div></p></li>
+</p><div class="math-container"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mi>d</mi><mo>−</mo><mi>b</mi><mi>c</mi><mo>=</mo><mi>a</mi><mi>d</mi><mo>−</mo><mi>b</mi><mi>c</mi></mrow></math></div></li>
 </ol>
 <h3 id="skip-to-h3-calculus-equations">Skip to H3: Calculus
 Equations</h3>
@@ -325,31 +348,24 @@ Equations</h3>
 <ol start="6" type="1">
 <li><p><strong>LaTeX (Calculus 1)</strong>: The fundamental
 trigonometric limit.
-<div class="math-container" tabindex="0" role="group" aria-label="Mathematical formula. Use arrow keys to scroll."><math  display="block" xmlns="http://www.w3.org/1998/Math/MathML" alttext="Formula: \lim_{x \to 0} \frac{\sin x}{x} = 1" aria-label="Formula: \lim_{x \to 0} \frac{\sin x}{x} = 1"><semantics><mrow><munder><mi mathvariant="normal">lim</mi><mrow><mi>x</mi><mo>→</mo><mn>0</mn></mrow></munder><mfrac><mrow><mrow><mi mathvariant="normal">sin</mi><mo>&#8289;</mo></mrow><mi>x</mi></mrow><mi>x</mi></mfrac><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\lim_{x \to 0} \frac{\sin x}{x} = 1</annotation></semantics></math></div></p></li>
+</p><div class="math-container"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><munder><mi mathvariant="normal">lim</mi><mrow><mi>x</mi><mo>→</mo><mn>0</mn></mrow></munder><mfrac><mrow><mrow><mi mathvariant="normal">sin</mi><mo>⁡</mo></mrow><mi>x</mi></mrow><mi>x</mi></mfrac><mo>=</mo><mn>1</mn></mrow></math></div></li>
 <li><p><strong>Typst (Calculus 2)</strong>: The Fundamental Theorem of
 Calculus.
-<div class="math-container" tabindex="0" role="group" aria-label="Mathematical formula. Use arrow keys to scroll."><math  display="block" xmlns="http://www.w3.org/1998/Math/MathML" alttext="Formula: \int_{a}^{b}f(x)dx = F(b) - F(a)" aria-label="Formula: \int_{a}^{b}f(x)dx = F(b) - F(a)"><semantics><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mi>d</mi><mi>x</mi><mo>=</mo><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
-\int_{a}^{b}f(x)dx = F(b) - F(a)
-</annotation></semantics></math></div></p></li>
+</p><div class="math-container"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mi>d</mi><mi>x</mi><mo>=</mo><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow></math></div></li>
 <li><p><strong>LaTeX (Calculus 3)</strong>: The derivative of the
 natural exponential function.
-<div class="math-container" tabindex="0" role="group" aria-label="Mathematical formula. Use arrow keys to scroll."><math  display="block" xmlns="http://www.w3.org/1998/Math/MathML" alttext="Formula: \frac{d}{dx}(e^x) = e^x" aria-label="Formula: \frac{d}{dx}(e^x) = e^x"><semantics><mrow><mfrac><mi>d</mi><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo stretchy="false" form="prefix">(</mo><msup><mi>e</mi><mi>x</mi></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>e</mi><mi>x</mi></msup></mrow><annotation encoding="application/x-tex">\frac{d}{dx}(e^x) = e^x</annotation></semantics></math></div></p></li>
+</p><div class="math-container"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mi>d</mi><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo stretchy="false" form="prefix">(</mo><msup><mi>e</mi><mi>x</mi></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>e</mi><mi>x</mi></msup></mrow></math></div></li>
 <li><p><strong>Typst (Calculus 4)</strong>: The solution to the Basel
 problem.
-<div class="math-container" tabindex="0" role="group" aria-label="Mathematical formula. Use arrow keys to scroll."><math  display="block" xmlns="http://www.w3.org/1998/Math/MathML" alttext="Formula: \sum_{n = 1}^{\infty}\frac{1}{n^{2}} = \frac{\pi^{2}}{6}" aria-label="Formula: \sum_{n = 1}^{\infty}\frac{1}{n^{2}} = \frac{\pi^{2}}{6}"><semantics><mrow><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mo accent="false">∞</mo></munderover><mfrac><mn>1</mn><msup><mi>n</mi><mn>2</mn></msup></mfrac><mo>=</mo><mfrac><msup><mi>π</mi><mn>2</mn></msup><mn>6</mn></mfrac></mrow><annotation encoding="application/x-tex">
-\sum_{n = 1}^{\infty}\frac{1}{n^{2}} = \frac{\pi^{2}}{6}
-</annotation></semantics></math></div></p></li>
+</p><div class="math-container"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mo accent="false">∞</mo></munderover><mfrac><mn>1</mn><msup><mi>n</mi><mn>2</mn></msup></mfrac><mo>=</mo><mfrac><msup><mi>π</mi><mn>2</mn></msup><mn>6</mn></mfrac></mrow></math></div></li>
 <li><p><strong>SymPy (Calculus 5)</strong>: Derivative of the sine
 function.
-<div class="math-container" tabindex="0" role="group" aria-label="Mathematical formula. Use arrow keys to scroll."><math  display="block" xmlns="http://www.w3.org/1998/Math/MathML" alttext="Formula: \cos{\left(x \right)} = \cos{\left(x \right)}" aria-label="Formula: \cos{\left(x \right)} = \cos{\left(x \right)}"><semantics><mrow><mrow><mi mathvariant="normal">cos</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mi mathvariant="normal">cos</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
-\cos{\left(x \right)} = \cos{\left(x \right)}
-</annotation></semantics></math></div></p></li>
+</p><div class="math-container"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mi mathvariant="normal">cos</mi><mo>⁡</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mi mathvariant="normal">cos</mi><mo>⁡</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></math></div></li>
 </ol>
 <h2 id="visual-representation">Visual Representation</h2>
 <p>Here is a graph visualising some of the functions:</p>
 <figure>
-<img src="graph.png"
-alt="this image in this 49 is not alt text . put it" />
+<img src="graph.png" alt="this image in this 49 is not alt text . put it">
 <figcaption aria-hidden="true">this image in this 49 is not alt text .
 put it</figcaption>
 </figure>
