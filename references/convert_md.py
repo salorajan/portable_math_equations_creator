@@ -1318,8 +1318,42 @@ def detect_math_format(formula: str) -> str:
     return "latex"
 
 
-def process_markdown_equations(content: str, metadata: dict = {}) -> str:
-    """Find and replace all SymPy, MathML, and Typst formulas in markdown with standard LaTeX math."""
+def convert_to_accessible_mathml(pure_formula: str, formula_format: str, is_block: bool) -> str:
+    """Translates any math dialect to clean, accessible Presentation MathML 3.0."""
+    import latex2mathml.converter
+    
+    # 1. Translate Typst or SymPy to LaTeX first
+    latex_eq = pure_formula
+    if formula_format == "typst":
+        latex_eq = typst_to_latex(pure_formula)
+    elif formula_format == "sympy":
+        latex_eq = convert_sympy_to_latex(pure_formula)
+        
+    # 2. Generate MathML using latex2mathml
+    try:
+        if formula_format == "mathml":
+            mathml_pres = pure_formula
+            # Ensure it has the xmlns
+            if "xmlns" not in mathml_pres:
+                mathml_pres = mathml_pres.replace("<math", '<math xmlns="http://www.w3.org/1998/Math/MathML"')
+        else:
+            mathml_pres = latex2mathml.converter.convert(latex_eq)
+    except Exception as e:
+        print(f"Warning: latex2mathml failed for '{pure_formula[:30]}': {e}", file=sys.stderr)
+        mathml_pres = f'<math xmlns="http://www.w3.org/1998/Math/MathML"><mtext>{latex_eq}</mtext></math>'
+        
+    # 3. Inject display attribute in root <math> tag
+    disp_attr = 'display="block"' if is_block else 'display="inline"'
+    if "display=" in mathml_pres:
+        mathml_pres = re.sub(r'display="[^"]*"', disp_attr, mathml_pres)
+    else:
+        mathml_pres = mathml_pres.replace("<math", f"<math {disp_attr}")
+        
+    return mathml_pres
+
+
+def process_markdown_equations(content: str, target_format: str = "html", metadata: dict = {}) -> str:
+    """Find and replace all SymPy, MathML, and Typst formulas in markdown with standard LaTeX math or MathML tags."""
     math_format = metadata.get("math", "auto").strip().lower()
     tokens = tokenize_text(content)
     result = []
@@ -1358,30 +1392,41 @@ def process_markdown_equations(content: str, metadata: dict = {}) -> str:
                 
             is_block = token_type == "latex_block"
             
-            # If it is determined to be Typst or SymPy, convert it to LaTeX
-            if detected_format == "typst":
+            if target_format == "html":
                 try:
-                    latex_eq = typst_to_latex(pure_formula)
+                    mml = convert_to_accessible_mathml(pure_formula, detected_format, is_block)
                     if is_block:
-                        result.append(f"$$\n{latex_eq}\n$$")
+                        result.append(f"\n\n{mml}\n\n")
                     else:
-                        result.append(f"${latex_eq}$")
+                        result.append(mml)
                 except Exception as e:
-                    print(f"Warning: Failed to convert Typst formula '{pure_formula[:30]}' at line {current_line}: {e}", file=sys.stderr)
-                    result.append(val)
-            elif detected_format == "sympy":
-                try:
-                    latex_eq = convert_sympy_to_latex(pure_formula)
-                    if is_block:
-                        result.append(f"$$\n{latex_eq}\n$$")
-                    else:
-                        result.append(f"${latex_eq}$")
-                except Exception as e:
-                    print(f"Warning: Failed to convert SymPy formula '{pure_formula[:30]}' at line {current_line}: {e}", file=sys.stderr)
+                    print(f"Warning: Failed to convert math formula at line {current_line} to MathML: {e}", file=sys.stderr)
                     result.append(val)
             else:
-                # Keep as LaTeX
-                result.append(val)
+                # If it is determined to be Typst or SymPy, convert it to LaTeX
+                if detected_format == "typst":
+                    try:
+                        latex_eq = typst_to_latex(pure_formula)
+                        if is_block:
+                            result.append(f"$$\n{latex_eq}\n$$")
+                        else:
+                            result.append(f"${latex_eq}$")
+                    except Exception as e:
+                        print(f"Warning: Failed to convert Typst formula '{pure_formula[:30]}' at line {current_line}: {e}", file=sys.stderr)
+                        result.append(val)
+                elif detected_format == "sympy":
+                    try:
+                        latex_eq = convert_sympy_to_latex(pure_formula)
+                        if is_block:
+                            result.append(f"$$\n{latex_eq}\n$$")
+                        else:
+                            result.append(f"${latex_eq}$")
+                    except Exception as e:
+                        print(f"Warning: Failed to convert SymPy formula '{pure_formula[:30]}' at line {current_line}: {e}", file=sys.stderr)
+                        result.append(val)
+                else:
+                    # Keep as LaTeX
+                    result.append(val)
                 
         elif token_type in ("sympy", "mathml", "typst"):
             # Determine if this token is on its own line (block equation)
@@ -1424,22 +1469,33 @@ def process_markdown_equations(content: str, metadata: dict = {}) -> str:
                 elif val.startswith("t:{"):
                     pure_formula = val[3:-1].strip()
             
-            try:
-                if token_type == "sympy":
-                    latex_eq = convert_sympy_to_latex(pure_formula)
-                elif token_type == "mathml":
-                    latex_eq = mathml_to_latex(pure_formula)
-                else:  # typst
-                    latex_eq = typst_to_latex(pure_formula)
-                    
-                if is_block:
-                    result.append(f"$$\n{latex_eq}\n$$")
-                else:
-                    result.append(f"${latex_eq}$")
-            except Exception as e:
-                snippet = pure_formula[:30] + "..." if len(pure_formula) > 30 else pure_formula
-                print(f"Warning: Failed to convert {token_type.upper()} formula '{snippet}' at line {current_line}: {e}", file=sys.stderr)
-                result.append(val)
+            if target_format == "html":
+                try:
+                    mml = convert_to_accessible_mathml(pure_formula, token_type, is_block)
+                    if is_block:
+                        result.append(f"\n\n{mml}\n\n")
+                    else:
+                        result.append(mml)
+                except Exception as e:
+                    print(f"Warning: Failed to convert math token at line {current_line} to MathML: {e}", file=sys.stderr)
+                    result.append(val)
+            else:
+                try:
+                    if token_type == "sympy":
+                        latex_eq = convert_sympy_to_latex(pure_formula)
+                    elif token_type == "mathml":
+                        latex_eq = mathml_to_latex(pure_formula)
+                    else:  # typst
+                        latex_eq = typst_to_latex(pure_formula)
+                        
+                    if is_block:
+                        result.append(f"$$\n{latex_eq}\n$$")
+                    else:
+                        result.append(f"${latex_eq}$")
+                except Exception as e:
+                    snippet = pure_formula[:30] + "..." if len(pure_formula) > 30 else pure_formula
+                    print(f"Warning: Failed to convert {token_type.upper()} formula '{snippet}' at line {current_line}: {e}", file=sys.stderr)
+                    result.append(val)
         else:
             result.append(val)
             
@@ -1724,9 +1780,9 @@ def main():
         # Remediation: Fix missing alt texts using custom string format
         content = fix_missing_alt_texts(content)
             
-        # 2. Process SymPy and MathML equations, converting them to LaTeX
+        # 2. Process SymPy and MathML equations, converting them to LaTeX or MathML
         print("Parsing equations...")
-        converted_content = process_markdown_equations(content, metadata)
+        converted_content = process_markdown_equations(content, target_format, metadata)
         
         # 3. Write intermediate converted markdown to a temp file
         with tempfile.NamedTemporaryFile("w", dir=input_dir, suffix=".md", delete=False, encoding="utf-8") as temp_f:
